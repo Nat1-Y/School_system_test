@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="./css/teacherstyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="teacher-info">
+            <div class="teacher-avatar">
+                <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h3 id="teacherName">[Teacher Name]</h3>
+            <p id="teacherId">ID: Loading...</p>
+            <p id="teacherSubject">Subject: Loading...</p>
+        </div>
+        <nav>
+            <ul>
+                <li class="active"><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="edit-me-teacher.html"><i class="fas fa-user-edit"></i> Edit Me</a></li>
+                <li><a href="#schedule"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                <li><a href="#classes"><i class="fas fa-users"></i> Classes</a></li>
+                <li><a href="#materials"><i class="fas fa-book"></i> Materials</a></li>
+                <li><a href="#assignments"><i class="fas fa-tasks"></i> Assignments</a></li>
+                <li><a href="#submissions"><i class="fas fa-file-alt"></i> Submissions</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content-with-sidebar">
+        <header class="header">
+            <div class="header-left">
+        <h1>Teacher Dashboard</h1>
+                <p id="welcomeMessage">Welcome back! Ready to inspire today?</p>
+            </div>
+            <div class="header-right">
+            <!-- <a href="teacherChat.html" class="chat-btn" id="chatBtn">
+                <i class="fas fa-comments"></i> Chat
+                <span class="notification-badge" id="messageBadge">0</span>
+            </a> -->
+                <button id="logoutButton" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+        </div>
+    </header>
+
+        <main class="dashboard-content">
+        <!-- Profile Section -->
+            <section id="profile" class="dashboard-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user"></i> My Profile</h2>
+                </div>
+                <div class="profile-cards">
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <i class="fas fa-id-card"></i>
+                            <h3>Personal Information</h3>
+                        </div>
+                        <div class="card-content" id="profile-details">
+                            <div class="info-item">
+                                <span class="info-label">Name:</span>
+                                <span class="info-value" id="profileName">Loading...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Email:</span>
+                                <span class="info-value" id="profileEmail">Loading...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Subject:</span>
+                                <span class="info-value" id="profileSubject">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Quick Stats</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-number" id="totalClasses">0</div>
+                                    <div class="stat-label">Classes</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="totalStudents">20</div>
+                                    <div class="stat-label">Notifications</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="totalAssignments">0</div>
+                                    <div class="stat-label">Assignments</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Schedule Section -->
+            <section id="schedule" class="dashboard-section section-hidden">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar-alt"></i> My Schedule</h2>
+                    <div class="section-actions">
+                        <button id="refreshSchedule" class="btn-secondary">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="schedule-container">
+                    <div class="schedule-grid" id="schedule-grid">
+                        <div class="loading-message">
+                            <div class="spinner"></div>
+                            <p>Loading schedule...</p>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Classes Section -->
+            <section id="classes" class="dashboard-section section-hidden">
+                <div class="section-header">
+                    <h2><i class="fas fa-users"></i> My Classes</h2>
+                    <div class="section-actions">
+                        <button id="refreshClasses" class="btn-secondary">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="classes-grid" id="classes-grid">
+                    <div class="loading-message">
+                        <div class="spinner"></div>
+                        <p>Loading classes...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Students Section -->
+            <section id="students" class="dashboard-section section-hidden">
+                <div class="section-header">
+                    <h2><i class="fas fa-graduation-cap"></i> Class Students</h2>
+                    <div class="section-actions">
+                        <button id="backToClasses" class="btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to Classes
+                        </button>
+                        <button id="refreshStudents" class="btn-secondary">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="class-info-card" id="classInfoCard" style="display: none;">
+                    <div class="class-header">
+                        <h3 id="currentClassName">Class Name</h3>
+                        <div class="class-actions">
+                            <button class="btn-primary" id="startAttendanceBtn">
+                                <i class="fas fa-clipboard-check"></i> Start Attendance
+                            </button>
+                            <button class="btn-primary" onclick="window.location.href='classAnnouncements.html'">
+                                <i class="fas fa-bullhorn"></i> Class Announcements
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="students-grid" id="students-grid">
+                    <div class="loading-message">
+                        <div class="spinner"></div>
+                        <p>Select a class to view students...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Materials Section -->
+            <section id="materials" class="dashboard-section section-hidden">
+                <div class="section-header">
+                    <h2><i class="fas fa-book"></i> Materials</h2>
+                    <div class="section-actions">
+                        <button id="uploadMaterialBtn" class="btn-primary">
+                            <i class="fas fa-upload"></i> Upload Material
+                        </button>
+                        <button id="refreshMaterials" class="btn-secondary">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="materials-grid" id="materials-grid">
+                    <div class="loading-message">
+                        <div class="spinner"></div>
+                        <p>Loading materials...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assignments Section -->
+            <section id="assignments" class="dashboard-section section-hidden">
+                <div class="section-header">
+                    <h2><i class="fas fa-tasks"></i> Assignments</h2>
+                    <div class="section-actions">
+                        <button id="createAssignmentMainBtn" class="btn-primary">
+                            <i class="fas fa-plus"></i> Create Assignment
+                        </button>
+                        <button id="refreshAssignments" class="btn-secondary">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="assignments-grid" id="assignments-grid">
+                    <div class="loading-message">
+                        <div class="spinner"></div>
+                        <p>Loading assignments...</p>
+                    </div>
+                </div>
+        </section>
+
+            <!-- Submissions Section -->
+            <section id="submissions" class="dashboard-section section-hidden">
+                <div class="section-header">
+                    <h2><i class="fas fa-file-alt"></i> Assignment Submissions</h2>
+                    <div class="section-actions">
+                        <button id="refreshSubmissions" class="btn-secondary">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="submissions-grid" id="submissions-grid">
+                    <div class="loading-message">
+                        <div class="spinner"></div>
+                        <p>Loading submissions...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Student Details Modal -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalStudentName">Student Name</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="student-info-grid">
+                    <div class="info-card">
+                        <div class="card-header">
+                            <i class="fas fa-user"></i>
+                            <h3>Student Information</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-item">
+                                <span class="info-label">Student ID:</span>
+                                <span class="info-value" id="modalStudentId">Loading...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Class:</span>
+                                <span class="info-value" id="modalStudentClass">Loading...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Email:</span>
+                                <span class="info-value" id="modalStudentEmail">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="student-actions">
+                    <h3>Actions</h3>
+                    <div class="action-buttons">
+                        <button id="assignGradeBtn" class="btn-primary">Assign Grade</button>
+<button id="sendMaterialBtn" class="btn-primary">Send Material</button>
+<button id="createAssignmentBtn" class="btn-primary">Create Individual Assignment</button>
+<button id="viewSubmissionsBtn" class="btn-secondary">View Submissions</button>
+<button id="chatWithStudentBtn" class="btn-primary">Chat with Student</button>
+<button id="chatWithParentBtn" class="btn-secondary">Chat with Parent</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Material Modal -->
+    <div id="materialModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Upload Material</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="materialForm" class="modal-form">
+                    <div class="form-group">
+                        <label for="material-title">Title</label>
+                        <input type="text" id="material-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="material-class">Class</label>
+                        <select id="material-class" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="material-subject">Subject</label>
+                        <select id="material-subject" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="material-file">File URL</label>
+                        <input type="url" id="material-file" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('materialModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Upload Material</button>
+                </div>
+                </form>
+            </div>
+        </div>
+            </div>
+
+    <!-- Create Assignment Modal -->
+    <div id="assignmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Assignment</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="assignmentForm" class="modal-form">
+                    <div class="form-group">
+                        <label for="assignment-title">Title</label>
+                        <input type="text" id="assignment-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignment-description">Description</label>
+                        <textarea id="assignment-description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignment-class">Class</label>
+                        <select id="assignment-class" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignment-subject">Subject</label>
+                        <select id="assignment-subject" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignment-due-date">Due Date</label>
+                        <input type="datetime-local" id="assignment-due-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignment-file">File URL (Optional)</label>
+                        <input type="url" id="assignment-file">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('assignmentModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Create Assignment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assign Grade Modal -->
+    <div id="gradeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Assign Grade</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="gradeForm" class="modal-form">
+                    <input type="hidden" id="grade-student-id">
+                    <div class="form-group">
+                        <label for="grade-subject">Subject</label>
+                        <select id="grade-subject" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="grade-semester">Semester</label>
+                        <select id="grade-semester" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="grade-value">Grade (0-100)</label>
+                    <input type="number" id="grade-value" min="0" max="100" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="grade-comments">Comments</label>
+                    <textarea id="grade-comments" rows="3"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('gradeModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Assign Grade</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Send Material to Student Modal -->
+    <div id="sendMaterialModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Send Material to Student</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="sendMaterialForm" class="modal-form">
+                    <input type="hidden" id="send-material-student-id">
+                    <div class="form-group">
+                        <label for="send-material-title">Title</label>
+                        <input type="text" id="send-material-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="send-material-class">Class</label>
+                        <select id="send-material-class" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="send-material-subject">Subject</label>
+                        <select id="send-material-subject" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="send-material-file">File URL</label>
+                        <input type="url" id="send-material-file" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('sendMaterialModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Send Material</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Assignment for Student Modal -->
+    <div id="studentAssignmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Individual Assignment</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-description">
+                    <p><strong>This assignment will be created specifically for the selected student.</strong></p>
+                </div>
+                <form id="studentAssignmentForm" class="modal-form">
+                    <input type="hidden" id="student-assignment-student-id">
+                    <div class="form-group">
+                        <label for="student-assignment-title">Title</label>
+                        <input type="text" id="student-assignment-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-assignment-description">Description</label>
+                        <textarea id="student-assignment-description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-assignment-class">Class</label>
+                        <select id="student-assignment-class" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-assignment-subject">Subject</label>
+                        <select id="student-assignment-subject" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-assignment-due-date">Due Date</label>
+                        <input type="datetime-local" id="student-assignment-due-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-assignment-file">File URL (Optional)</label>
+                        <input type="url" id="student-assignment-file">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('studentAssignmentModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Create Individual Assignment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+            </div>
+
+    <!-- View Student Submissions Modal -->
+    <div id="submissionsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Student Submissions</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="submissions-content">
+                    <div class="loading-message">
+                        <div class="spinner"></div>
+                        <p>Loading submissions...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/teacherDashboard.js"></script>
+</body>
+</html>

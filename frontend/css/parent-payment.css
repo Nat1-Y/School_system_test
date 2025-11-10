@@ -1,0 +1,71 @@
+body {
+  background: #f8fafc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+.payment-container {
+  max-width: 400px;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(2, 132, 199, 0.08);
+  padding: 32px 24px 24px 24px;
+}
+.payment-container h2 {
+  color: #0284c7;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #0284c7;
+  font-weight: 500;
+}
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f1f5f9;
+  transition: border 0.2s;
+}
+.form-group input:focus {
+  border: 1.5px solid #0284c7;
+  outline: none;
+}
+#card-element {
+  background: #f1f5f9;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  margin-bottom: 8px;
+}
+#submitBtn {
+  width: 100%;
+  background: #0284c7;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+#submitBtn:hover {
+  background: #0ea5e9;
+}
+#payment-message {
+  margin-top: 16px;
+  text-align: center;
+  color: #e11d48;
+  font-weight: 500;
+} 

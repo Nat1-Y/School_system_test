@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="./css/studentDashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="profile">
+      <h3 id="sidebarStudentName">[Student Name]</h3>
+      <p id="sidebarStudentId">ID: Loading...</p>
+      <p id="sidebarStudentClass">Class: Loading...</p>
+    </div>
+    <nav>
+      <ul>
+        <li class="active"><a href="#dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li><a href="studentAnnounces.html"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+        <li><a href="#grades"><i class="fas fa-chart-line"></i> Grades</a></li>
+        <li><a href="#attendance"><i class="fas fa-calendar-check"></i> Attendance</a></li>
+        <li><a href="#materials"><i class="fas fa-book"></i> Materials</a></li>
+        <li><a href="#not-submitted-assignments"><i class="fas fa-clock"></i> Not Submitted</a></li>
+        <li><a href="#submitted-assignments"><i class="fas fa-check-circle"></i> Submitted</a></li>
+        <li><a href="#teachers" id="sidebarTeachersLink"><i class="fas fa-chalkboard-teacher"></i> Teachers</a></li>
+        <li><a href="edit-me-student.html"><i class="fas fa-user-edit"></i> Edit Me</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content-with-sidebar">
+    <header class="header">
+      <div class="header-left">
+        <h1>Student Dashboard</h1>
+        <p id="motivationalQuote">Keep shining and achieve your goals!</p>
+      </div>
+      <div class="header-right">
+        <button class="logout-btn" id="logoutBtn">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </header>
+
+    <main class="dashboard-content">
+      <!-- Dashboard Section -->
+      <section id="dashboard" class="dashboard-section">
+        <!-- Summary Widgets -->
+        <div class="widgets">
+          <div class="widget grade-widget">
+            <h3><i class="fas fa-chart-line"></i> Grade Average</h3>
+            <div id="gradeProgress" class="progress-circle">
+              <svg viewBox="0 0 36 36">
+                <circle class="progress-circle-bg" cx="18" cy="18" r="15.9155"></circle>
+                <circle class="progress-circle-fill" cx="18" cy="18" r="15.9155" stroke-dasharray="100, 100"></circle>
+              </svg>
+              <div class="progress-percent">0%</div>
+            </div>
+          </div>
+          <div class="widget attendance-widget">
+            <h3><i class="fas fa-calendar-check"></i> Attendance</h3>
+            <div id="attendanceChart" class="pie-chart"></div>
+            <div class="attendance-stats">
+              <span class="present-stat">80% Present</span>
+              <span class="absent-stat">20% Absent</span>
+            </div>
+          </div>
+          <div class="widget assignments-widget">
+            <h3><i class="fas fa-tasks"></i> Upcoming Assignments</h3>
+            <ul id="upcomingAssignments">
+              <li class="loading">Loading assignments...</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grades Section -->
+      <section id="grades" class="full-width-section">
+        <div class="section-header">
+          <h2><i class="fas fa-graduation-cap"></i> Grades</h2>
+          <div class="section-actions">
+            <button id="refreshGrades"><i class="fas fa-sync-alt"></i> Refresh</button>
+          </div>
+        </div>
+        <div class="table-container">
+          <table id="gradesTable">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Semester</th>
+                <th>Grade</th>
+                <th>Comments</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="loading-row">
+                <td colspan="4">Loading grades...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="chart-container">
+          <canvas id="gradeTrendChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Attendance Section -->
+      <section id="attendance" class="full-width-section">
+        <div class="section-header">
+          <h2><i class="fas fa-user-check"></i> Attendance</h2>
+          <div class="date-filter">
+            <select id="attendanceFilter">
+              <option value="all">All Time</option>
+              <option value="month">This Month</option>
+              <option value="week">This Week</option>
+            </select>
+          </div>
+        </div>
+        <div class="calendar-container">
+          <div id="calendar"></div>
+        </div>
+        <div class="table-container">
+          <table id="attendanceDetails">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Period</th>
+                <th>Subject</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="loading-row">
+                <td colspan="4">Loading attendance data...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Materials Section -->
+<section id="materials" class="full-width-section">
+  <div class="section-header">
+    <h2><i class="fas fa-book"></i> Materials</h2>
+    <div class="search-filter">
+      <input type="text" id="materialSearch" placeholder="Search materials..." oninput="filterMaterials()">
+      <button id="searchMaterials"><i class="fas fa-search"></i></button>
+    </div>
+  </div>
+  <div class="materials-grid" id="materialGrid">
+    <div class="loading-message">
+      <div class="spinner"></div>
+      <p>Loading materials...</p>
+    </div>
+  </div>
+</section>
+
+      <!-- Not Submitted Assignments Section -->
+      <section id="not-submitted-assignments" class="full-width-section">
+        <div class="section-header">
+          <h2><i class="fas fa-clock"></i> Not Submitted Assignments</h2>
+          <div class="section-actions">
+            <button id="refreshNotSubmitted"><i class="fas fa-sync-alt"></i> Refresh</button>
+          </div>
+        </div>
+        <div class="assignments-grid" id="notSubmittedAssignmentsGrid">
+          <div class="loading-message">
+            <div class="spinner"></div>
+            <p>Loading assignments...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Submitted Assignments Section -->
+      <section id="submitted-assignments" class="full-width-section">
+        <div class="section-header">
+          <h2><i class="fas fa-check-circle"></i> Submitted Assignments</h2>
+          <div class="section-actions">
+            <button id="refreshSubmitted"><i class="fas fa-sync-alt"></i> Refresh</button>
+          </div>
+        </div>
+        <div class="assignments-grid" id="submittedAssignmentsGrid">
+          <div class="loading-message">
+            <div class="spinner"></div>
+            <p>Loading assignments...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Teachers Section -->
+      <section id="teachers" class="full-width-section" style="display:none;">
+        <div class="section-header">
+          <h2><i class="fas fa-chalkboard-teacher"></i> Teachers</h2>
+        </div>
+        <div class="teachers-grid" id="teachersGrid">
+          <div class="loading-message">
+            <div class="spinner"></div>
+            <p>Loading teachers...</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./js/studentDashboard.js"></script>
+  <script>
+    // Smooth scrolling for sidebar navigation (only for hash links)
+    document.querySelectorAll('.sidebar a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove active class from all sidebar items
+        document.querySelectorAll('.sidebar li').forEach(item => {
+          item.classList.remove('active');
+        });
+        
+        // Add active class to clicked item
+        this.parentElement.classList.add('active');
+        
+        // Scroll to section
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
