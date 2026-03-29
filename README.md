@@ -42,6 +42,7 @@ UI interface
 - **Personal Profile**: Manage personal information and preferences
 
 ### 👨‍👩‍👧‍👦 Parent Dashboard
+UI interface
 - **Child Monitoring**: Track academic progress and attendance
 - **Communication**: Stay connected with teachers and administrators
 - **Payment Management**: Handle school fees and payments
