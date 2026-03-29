@@ -10,6 +10,7 @@ The School Management System is a full-stack web application that serves as a ce
 ## ✨ Key Features
 
 ### 🔐 Authentication & User Management
+UI sign in and sign out
 - **Unified Login System**: Single sign-on interface for all user types
 - **Role-Based Access Control**: Different dashboards and permissions for each user role
 - **Profile Management**: Comprehensive user profile setup and editing capabilities
