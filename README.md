@@ -50,6 +50,7 @@ UI interface
 - **Grade Reports**: Access detailed academic performance data
 
 ### 💬 Communication Features
+UI interface
 - **Real-time Chat**: Instant messaging between users
 - **Message Board**: School-wide announcements and notifications
 - **Class Announcements**: Targeted communication for specific classes
