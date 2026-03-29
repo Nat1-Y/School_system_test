@@ -34,6 +34,7 @@ UI interface
 - **Assignment Management**: Create and track assignments
 
 ### 👨‍🎓 Student Dashboard
+UI interface
 - **Academic Overview**: View grades, attendance, and academic progress
 - **Class Materials**: Access learning resources and assignments
 - **Announcements**: Stay updated with school and class announcements
