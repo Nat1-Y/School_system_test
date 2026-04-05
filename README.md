@@ -4,7 +4,7 @@ A comprehensive web-based school management system designed to streamline admini
 
 ## 🎯 Project Overview
 project
-
+school managmenet
 overview
 The School Management System is a full-stack web application that serves as a centralized platform for managing all aspects of school operations. It provides role-based access for administrators, teachers, students, and parents, enabling efficient communication, grade management, attendance tracking, and administrative operations.
 
