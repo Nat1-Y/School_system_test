@@ -9,7 +9,7 @@ overview
 The School Management System is a full-stack web application that serves as a centralized platform for managing all aspects of school operations. It provides role-based access for administrators, teachers, students, and parents, enabling efficient communication, grade management, attendance tracking, and administrative operations.
 
 ## ✨ Key Features
-features
+features authentication
 ### 🔐 Authentication & User Management
 UI sign in and sign out
 - **Unified Login System**: Single sign-on interface for all user types
