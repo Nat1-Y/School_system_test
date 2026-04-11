@@ -1,5 +1,5 @@
 # School Management System
-managment system
+managment system web-based
 A comprehensive web-based school management system designed to streamline administrative tasks, enhance communication between stakeholders, and provide a modern digital learning environment for educational institutions.
 
 ## 🎯 Project Overview
