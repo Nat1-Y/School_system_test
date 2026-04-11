@@ -26,7 +26,7 @@ UI interface friendly
 - **User Administration**: Control access and permissions across the system
 
 ### 👨‍🏫 Teacher Dashboard
-UI interface
+UI interface friendly
 - **Class Management**: View assigned classes and student lists
 - **Grade Management**: Record and update student grades
 - **Attendance Tracking**: Monitor student attendance
