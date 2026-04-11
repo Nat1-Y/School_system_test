@@ -58,7 +58,7 @@ UI interface friendly
 - **Notification System**: Keep users informed of important updates
 
 ### 💳 Payment System
-UI interface
+UI interface friendly
 - **Fee Management**: Track and manage school fees
 - **Payment Processing**: Secure payment handling with Stripe integration
 - **Payment History**: Comprehensive payment records and receipts
