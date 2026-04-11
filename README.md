@@ -66,7 +66,7 @@ UI interface friendly
 
 ## 🏗️ Architecture
 
-UI interface
+UI interface friendly
 ### Frontend
 - **HTML5**: Semantic markup for accessibility
 - **CSS3**: Modern styling with responsive design
