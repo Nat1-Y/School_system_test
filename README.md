@@ -18,7 +18,7 @@ UI sign in and sign out
 - **First-Time Login**: Guided onboarding process for new users
 
 ### 👨‍💼 Admin Dashboard
-UI interface friendly
+UI interface friendly and managment
 - **Student Management**: Add, edit, delete, and manage student records
 - **Teacher Management**: Comprehensive teacher administration tools
 - **Class Management**: Organize classes, subjects, and semesters
