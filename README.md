@@ -35,7 +35,7 @@ UI interface friendly and managment
 - **Assignment Management**: Create and track assignments
 
 ### 👨‍🎓 Student Dashboard
-UI interface friendly
+UI interface friendly and managmnt
 - **Academic Overview**: View grades, attendance, and academic progress
 - **Class Materials**: Access learning resources and assignments
 - **Announcements**: Stay updated with school and class announcements
