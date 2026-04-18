@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 const pool = require('./config/db');
 
 // Test DB connection
+//connection for auth
 pool.query('SELECT NOW()', (err, res) => {
   if (err) {
     console.error('Error connecting to the database', err);
