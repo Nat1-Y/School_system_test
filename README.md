@@ -43,7 +43,7 @@ UI interface friendly and managmnt
 - **Personal Profile**: Manage personal information and preferences
 
 ### 👨‍👩‍👧‍👦 Parent Dashboard
-UI  friendly
+UI  friendly and managment
 - **Child Monitoring**: Track academic progress and attendance
 - **Communication**: Stay connected with teachers and administrators
 - **Payment Management**: Handle school fees and payments
